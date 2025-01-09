@@ -85,6 +85,7 @@ def checkBounds(p1,p2,points,addMeta = False):
         return fail
 
 # Main loop
+# Basic operation: 
 def deform(perimeter, pos, points):
 
     # "space" is a stack
@@ -120,6 +121,8 @@ def deform(perimeter, pos, points):
 
             farthestPoint = []
             farthestDistance = 0
+
+            # This happens if p1 and p2 share an x value (vertical line). Happens rarely.
             if type(vals) is int:
                 bounds = vals
                 for x,y in outOfBounds:
@@ -142,7 +145,7 @@ def deform(perimeter, pos, points):
                             farthestDistance = distance
                             farthestPoint = [x,y]
                 except:
-                    # This runs if the line is not a function (vertical line).
+                    # This runs if the line is horizontal (which causes an error because a**-1 = 0/0)
                     bounds = p1[1]
                     for x,y in outOfBounds:
                         if farthestDistance < abs(y-bounds):
@@ -211,11 +214,14 @@ def testRuntime(rand = "circle", grid = [-20,20], numPoints = 20,points=[], iter
     
 
 
-test(rand="circle", numPoints=5000, grid=[-1000,1000])
-# testRuntime(rand="circle",numPoints=100, grid=[-10000,10000])
-# testRuntime(rand="circle",numPoints=1000, grid=[-10000,10000])
+# test(rand="circle", numPoints=5000, grid=[-1000,1000])
 # testRuntime(rand="circle",numPoints=10000, grid=[-10000,10000])
-# testRuntime(rand="circle",numPoints=100000, grid=[-10000,10000])
+
+
+testRuntime(rand="circle",numPoints=10000, grid=[-10000,10000], iters=100)
+    # Commit 1 runtime (before blockmap implimentation): 0.0668 seconds
+
+
 
 
 # %%
