@@ -200,6 +200,8 @@ def randGenSpace(typeGen = "circle", grid = [-20,20], numPoints = 20,points=[]):
                 points.append(p)
     return points
 
+# Set rand to "None" if you don't want any random points. Otherwise,
+# random points will be appended to your given points.
 def test(rand = 'circle', grid = [-20,20], numPoints = 20,points=[]):
     points = randGenSpace(rand,grid,numPoints,points)
 
@@ -223,9 +225,15 @@ def testRuntime(rand = "circle", grid = [-20,20], numPoints = 20,points=[], iter
     print(elapsed/iters, "seconds")
     
 
+# ..=========================================..
+# ||                  RUN                    ||
+# ''=========================================''
 
-test(rand="circle", numPoints=5000, grid=[-1000,1000])
-# testRuntime(rand="circle",numPoints=10000, grid=[-10000,10000])
+# test(rand="circle", numPoints=5000, grid=[-1000,1000])
+
+test(rand="None",points=[[2, 17], [10, 6], [-12, 3], [-13, -10], 
+                         [2, 8], [-14, -11], [-4, -5], [-2, 4], 
+                         [-6, 19], [-17, 8], [-12, 1], [-2, 17]])
 
 
 # testRuntime(rand="circle",numPoints=10000, grid=[-10000,10000], iters=100)
