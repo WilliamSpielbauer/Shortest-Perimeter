@@ -1,5 +1,5 @@
 #  --------------------------------------------------------------------------------------------------
-# | FILE            :   shortPerimeter.py                                                            |
+# | FILE            :   shortPerimeterIndependant.py                                                 |
 # | AUTHOR          :   William Spielbauer                                                           |
 # | CREATED         :   Jan 21, 2025                                                                 |
 # | DESCRIPTION     :   A program that finds the shortest perimeter of a group of points.            |
@@ -7,14 +7,11 @@
 # |                                                                                                  |
 # |                     RUNTIME: O(xlogx)                                                            |
 # |                                                                                                  |
-# |                     If you do not have plotly in your environment, it is a requirement that is   |
-# |                     NOT included in this repository. shortPerimeterIndependant.py                |
-# |                     has no requirements. However, it will NOT give you a visual representation.  |
+# |                     "Independant" denotes that this file does not require plotly to function,    |
+# |                     but does not generate a visual representation of the result, only text.      |
 #  --------------------------------------------------------------------------------------------------
 
-#%%
 import random 
-import plotly.express as plotx
 import time
 import math
 
@@ -206,9 +203,6 @@ def randGenSpace(typeGen = "circle", grid = [-20,20], numPoints = 20,points=[]):
 def test(rand = 'circle', grid = [-20,20], numPoints = 20,points=[]):
     points = randGenSpace(rand,grid,numPoints,points)
 
-    # Place all points onto a scatter graph
-    fig = plotx.scatter(x = [p[0] for p in points], y = [p[1] for p in points])
-
     start = time.time()
     # Change "points" to include only the perimeter's points
     points = shortestPerimeter(points)
@@ -217,8 +211,6 @@ def test(rand = 'circle', grid = [-20,20], numPoints = 20,points=[]):
     print("Results:")
     print(len(points)-1,":",points)
     # Draw lines between the perimeter's points
-    fig.add_scatter(x = [p[0] for p in points], y = [p[1] for p in points])
-    fig.show()
     print("{} seconds".format(elapsed))
 
 def testRuntime(rand = "circle", grid = [-20,20], numPoints = 20,points=[], iters = 10):
@@ -240,6 +232,3 @@ test(rand="circle", numPoints=5000, grid=[-1000,1000])
     # Commit 1 average runtime: 0.0734 - 0.0668 seconds each
 
 
-
-
-# %%
